@@ -8,6 +8,7 @@ on:
       - images/**.jpg
       - images/**.jpeg
       - images/**.png
+      - images/**.webp
 
 permissions:
   contents: write
@@ -29,6 +30,21 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y webp libavif-bin
+
+      - name: Convert source .webp images to .avif
+        run: |
+          find images -iname "*.webp" | while read img; do
+            base="${img%.*}"
+            # Skip .webp files generated from a sibling raster; those are handled below.
+            if [ -f "$base.jpg" ] || [ -f "$base.jpeg" ] || [ -f "$base.png" ]; then
+              continue
+            fi
+            # avifenc cannot read .webp, so decode to a temporary PNG first.
+            tmp="$(mktemp --suffix=.png)"
+            dwebp "$img" -o "$tmp"
+            avifenc --min 25 --max 35 "$tmp" "$base.avif"
+            rm -f "$tmp"
+          done
 
       - name: Convert images to .webp and .avif
         run: |
