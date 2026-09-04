@@ -3,7 +3,7 @@ name: Convert Images to WebP and AVIF
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - images/**.jpg
       - images/**.jpeg
