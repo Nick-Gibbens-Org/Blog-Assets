@@ -24,4 +24,4 @@ This ensures that your assets are optimized for web use and accessible in the la
 
 ## Example
 
-An image in this repo can be used by copying its GitHub Pages URL (e.g., `https://sandstormnick.github.io/PortfolioSite-Assets/path/to/image.png`) and referencing it in the HTML or CSS.
+An image in this repo can be used by copying its GitHub Pages URL (e.g., `https://nick-gibbens-org.github.io/Blog-Assets/path/to/image.png`) and referencing it in the HTML or CSS.
